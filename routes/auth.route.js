@@ -105,11 +105,12 @@ router.post("/signin", async (req, res) => {
 });
 
 router.get("/profile", isAuthenticatedUser, async (req, res) => {
-  console.log(res.locals.userAuthed);
-  if (res.locals.userAuthed) {
+  const isAuthed = req.userAuthed;
+  console.log(isAuthed + " en route");
+  if (isAuthed) {
     return res.send(req.user);
   } else {
-    return res.json({ error: "User not Logged in" });
+    return res.json({ error: "No picture to display" });
   }
 });
 
