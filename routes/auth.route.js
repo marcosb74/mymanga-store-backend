@@ -105,7 +105,12 @@ router.post("/signin", async (req, res) => {
 });
 
 router.get("/profile", isAuthenticatedUser, async (req, res) => {
-  return res.send(req.user);
+  console.log(res.locals.userAuthed);
+  if (res.locals.userAuthed) {
+    return res.send(req.user);
+  } else {
+    return res.json({ error: "User not Logged in" });
+  }
 });
 
 module.exports = router;
