@@ -24,6 +24,7 @@ The app allows users to view products, add them into the cart, register, login a
 
 On the admin-side, the admin gets notify via Email if a user has registered, via SMS & Whatsapp if a user has purchased an item.
 
+On the architectural side, the project was diveded into Services, Routes & Controllers. 
 
 ## Technologies used <a name = "tech_used"></a>
 
