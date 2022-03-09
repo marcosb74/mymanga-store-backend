@@ -8,7 +8,6 @@ const isAuthenticatedUser = async (req, res, next) => {
 
   if (token === "null") {
     req.userAuthed = false;
-    console.log(req.userAuthed + "en logged");
     return next();
   } else {
     req.userAuthed = true;
