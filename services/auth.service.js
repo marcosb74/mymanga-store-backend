@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 const Cart = require("../models/Cart");
 const { createTransport } = require("nodemailer");
 const loggerConsole = require("../utils/loggerSetup");
+const sendToken = require("../utils/jwt");
 require("dotenv").config();
 
 async function signUpService(req, res) {
@@ -11,7 +12,7 @@ async function signUpService(req, res) {
   const isOnDb = await User.find({
     email: req.body.email,
   });
-  if (!isOnDb === []) {
+  if (isOnDb.length) {
     loggerConsole.warn(
       "A user tried registering with an email already associated to another user, email used: " +
         req.body.email
@@ -76,7 +77,7 @@ async function signUpService(req, res) {
       //SENDING JWT
       sendToken(user, 200, res);
     } catch (error) {
-      loggerConsole.error("An error ocurred on /signup" + error);
+      loggerConsole.error("An error ocurred on /signup " + error);
     }
   }
 }
